@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>POP Cards</title>
+</head>
+<body>
+
+    <div class="card">
+        <img src="" alt="" id="cartaz">
+        <h2 id="tituloFilme"></h2>
+        <p id="direcaoFilme"></p>
+        <p id="anoFilme"></p>
+    </div>
+    
+</body>
+<script>
+
+    const url = 'https://pokeapi.co/api/v2/pokemon/7';
+        
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const cartazUrl = data.sprites.other['official-artwork'].front_default;
+
+            document.getElementById('cartaz').src = cartazUrl;
+
+            document.getElementById('tituloFilme').innerHTML = data.name;
+
+            document.getElementById('direcaoFilme').innerHTML = data.base_experience;
+
+            document.getElementById('anoFilme').innerHTML = data.height;
+
+        })
+
+
+</script>
+</html>
