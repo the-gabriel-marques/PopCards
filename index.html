@@ -14,27 +14,32 @@
         <p id="direcaoFilme"></p>
         <p id="anoFilme"></p>
     </div>
+
+    <div>
+        <button type="button" onclick="sortearPokemon()">Sortear Pokémon</button>
+    </div>
     
 </body>
 <script>
 
-    const url = 'https://pokeapi.co/api/v2/pokemon/7';
-        
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            const cartazUrl = data.sprites.other['official-artwork'].front_default;
+        function sortearPokemon() {
+            const numeroAleatorio = Math.floor(Math.random() * 1025 ) + 1;
+            const url = 'https://pokeapi.co/api/v2/pokemon/' + numeroAleatorio;
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const cartazUrl = data.sprites.other['official-artwork'].front_default;
 
-            document.getElementById('cartaz').src = cartazUrl;
+                    document.getElementById('cartaz').src = cartazUrl;
 
-            document.getElementById('tituloFilme').innerHTML = data.name;
+                    document.getElementById('tituloFilme').innerHTML = data.name;
 
-            document.getElementById('direcaoFilme').innerHTML = data.base_experience;
+                    document.getElementById('direcaoFilme').innerHTML = data.base_experience;
 
-            document.getElementById('anoFilme').innerHTML = data.height;
-
-        })
-
+                    document.getElementById('anoFilme').innerHTML = data.height;
+                })
+                .catch(error => alert('Não é possível carregar os dados'))
+        }
 
 </script>
 </html>
